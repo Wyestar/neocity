@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</header>
+<body>
+	<div>
+		<p><a href="/">return to the nexus</a></p>
+		<p>refresh to see a different random image</p>
+	</div>
+	<div>
+		<img id="randomImageNode" src="" alt="random image"/>
+	</div>
+
+	<script>
+	  // x = 200-800
+		// y = 100-400
+		const randomX = () => {
+  		const minX = 200
+  		const maxX = 800
+  		return (Math.floor(Math.random() * (maxX - minX + 1) + minX)).toString();
+		}
+
+		const randomY = () => {
+		  const minY = 100
+  		const maxY = 400
+  		return (Math.floor(Math.random() * (maxY - minY + 1) + minY)).toString();
+		}
+
+		const randomImageUrl = "https://picsum.photos/"+randomX()+"/"+randomY();
+
+		document.getElementById("randomImageNode").src = randomImageUrl
+	</script>
+</body>
+</html>

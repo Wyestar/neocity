@@ -7,3 +7,7 @@ body {
   color: black;
   font-family: Verdana;
 }
+
+.tabItem {
+    cursor: pointer
+}
