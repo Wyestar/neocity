@@ -1,36 +1,42 @@
-<!DOCTYPE html>
-<html>
-<header>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</header>
-<body>
+<div>
 	<div>
 		<p><a href="/">return to the nexus</a></p>
 		<p>refresh to see a different random image</p>
+		<div>
+			<button id="randomImageBtn">or click this</button>
+		</div>
 	</div>
 	<div>
-		<img id="randomImageNode" src="" alt="random image"/>
+		<img id="randomImageNode" src="" alt="random image node"/>
 	</div>
 
 	<script>
-	  // x = 200-800
-		// y = 100-400
+	  // x = 300-800
+		// y = 150-600
 		const randomX = () => {
-  		const minX = 200
+  		const minX = 300
   		const maxX = 800
   		return (Math.floor(Math.random() * (maxX - minX + 1) + minX)).toString();
 		}
 
 		const randomY = () => {
-		  const minY = 100
-  		const maxY = 400
+		  const minY = 150
+  		const maxY = 600
   		return (Math.floor(Math.random() * (maxY - minY + 1) + minY)).toString();
 		}
 
-		const randomImageUrl = "https://picsum.photos/"+randomX()+"/"+randomY();
+		const createRandomImageUrl = () => {
+		  return "https://picsum.photos/"+randomX()+"/"+randomY();
+		}
 
-		document.getElementById("randomImageNode").src = randomImageUrl
+		const updateRandomImageNode = () => {
+		  document.getElementById("randomImageNode").src = createRandomImageUrl();
+		}
+
+		const randomImageBtn = document.getElementById("randomImageBtn");
+
+		randomImageBtn.addEventListener("click", updateRandomImageNode)
+
+		updateRandomImageNode()
 	</script>
-</body>
-</html>
+</div>

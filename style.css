@@ -3,9 +3,16 @@
    "how to change link color." */
 
 body {
-  background-color: white;
-  color: black;
-  font-family: Verdana;
+    background-color: white;
+}
+
+.main-page {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: coral;
+    color: black;
+    font-family: Verdana;
 }
 
 .tabItem {
