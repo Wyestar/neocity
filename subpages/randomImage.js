@@ -1,4 +1,4 @@
-<div>
+const randomImageNodeString = `<div>
 	<div>
 		<p><a href="/">return to the nexus</a></p>
 		<p>click the button to see a different random image</p>
@@ -51,3 +51,7 @@
   		updateRandomImageNode()
     </script>
 </div>
+`;
+
+const randomImageNode = document.createElement(randomImageNodeString);
+export default { randomImageNode }

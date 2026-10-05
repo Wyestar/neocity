@@ -4,90 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The web site of gevurztraminer</title>
-    <!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
 
-    <!--<script src="jquery.min.js"></script>-->
+    <script src="jquery.min.js"></script>
     <!--<script type="text/javascript" src="dist/purify.min.js"></script>-->
-
-    <!--<link rel="stylesheet" href="https://pyscript.net"/>-->
-    <!--<script type="module" src="https://pyscript.net"></script>-->
   </head>
   <body>
   	<script src="env.js"></script>
     <div class="main-page">
-    		<!--static banner/ascii art/logo-->
-        <!--side panel visuals-->
         <div class="header">
-		        <div class="banner">
-		        		<h1>gevurztraminer</h1>
-								<div>
-									<marquee>
-										moving around
+		        <div class="banner-container">
+								<div class="name-container">
+		        			<h1 class="name">gevurztraminer</h1>
+								</div>
+								<div class="marquee-container">
+									<marquee behavior="alternate" direction="down" class="marquee-1">
+										<marquee behavior="alternate" direction="left" class="marquee-2">
+											Be Attitude for Gains
+										</marquee>
 									</marquee>
 								</div>
 		        </div>
 
-            <p>tabs to other pages. if it's clickable, it's working but not complete.</p>
+            <p>[tabs to other pages. some are maybe working.]</p>
+            <ul id="tabsList" class="tabs">
+              <li class="tab-item"><a href="/">nexus</a></li>
+              <div class="tab-divider"></div>
+              <li id="daaGei" class="tab-item">打機</li>
+              <div class="tab-divider"></div>
+              <li id="brainOutput" class="tab-item">brain output</li>
+              <div class="tab-divider"></div>
 
-            <ul>
-              <li class="tab-item"><a href="/">Nexus</a></li>
-              <li>打機</li>
-              <li>Brain output</li>
-              <li>Ke aniau o Haleʻiwa</li>
-              <!--<li class="tabItem" onclick=fetchRandomImageSubpage()>Random image</li>-->
-              <li class="tab-item"><a href="subpages/randomImage.html">Random image</a></li>
-              <li>私についてや好きなもの</li>
+              <li id="haleiwaWeather" class="tab-item">ke aniau o Haleʻiwa</li>
+              <!--<li class="tab-item"><a href ="subpages/haleiwaWeather.html">Ke aniau o Haleʻiwa</a></li>-->
+
+              <div class="tab-divider"></div>
+              <li id="randomImage" class="tab-item">random image</li>
+              <!--<li class="tab-item"><a href="subpages/randomImage.html">Random image</a></li>-->
+              <div class="tab-divider"></div>
+              <li id="aboutMe" class="tab-item">私についてや好きなもの</li>
             </ul>
         </div>
+
+        <div id="subpageStart"></div>
         <div class="torso" id="subpageTarget">
-            <h1>greetings. you are cool</h1>
-            <p>my <a href="https://github.com/Wyestar">github</a>, it's quarter baked projects and algo practice mostly.</p>
-            <p>chronologically between being an embryo and a fossil. dimensionally present in both the folds of space-time and the spin of tensors. spiritually split betwixt harmonizing with every little critter and trying to ensure the potential of change is still within us. personally... just trying to master myself. welcome to my neocity</p>
+	        <div class="nexus">
+						<div class="nexus-top">
+            	<h2 class="nexus-h1">greetings. you are cool</h2>
+						</div>
+
+            <p>welcome to my neocity. i used to give out koala cookies to visitors but i can't open the pantry anymore because there's a huge spider inside. spiders are neat, but this one is always yelling with a thick Wenzhou accent and flipping a balisong around. but don't worry, what i do have instead are several tabs that lead to funky subpages (funk levels are subjective). explore around and check things out. each page has a special meaning to me that may or may not be elaborated on.</p>
+	        </div>
+
+					<!--subpage module test-->
+					<!--<script type="module">
+					  import randomImageNode from "./subpages/randomImage.html";
+						const subpageTargetNode = document.getElementById("subpageTarget");
+						subpageTargetNode.appendChild(randomImageNode)
+					</script>-->
         </div>
+        <div id="subpageEnd"></div>
+
         <div class="footer">
             working on this neocity for fun mostly
         </div>
     </div>
 
+    <script>
+      console.log(window.env.ENVIRONMENT);
+          // <script type="module" src="component.js">
+          // load directly into html
 
-    <!--<div id="py-output"></div>
-    <py-script src="mancala.py"></py-script>
-    <script type="py">
-      display(f"py test", target="py-output")
-    </script>-->
-
-    <!--subpages with fetch and innerHtml-->
-    <!--<script>
-      console.log(window.env.ENVIRONMENT)
-      const fetchRandomImageSubpage = () => {
-        fetch("http://localhost:8000/subpages/randomImage.html")
-          .then(response = response.text())
+      const fetchSubpage = (subpageName) => {
+        fetch("http://localhost:8000/subpages/"+subpageName+".html")
+          .then((response) => {
+            if (response) {
+              return response.text();
+            }
+          })
           .then((data) => {
-            console.log(data)
-            const subpageTargetNode = document.getElementById("subpageTarget");
-            subpageTargetNode.innerHTML = dataipt>
-                  console.log(window.env.ENVIRONMENT)
-                  const fetchRandomImageSubpage = () => {
-                    fetch("http://localhost:8000/subpages/randomImage.html")
-                      .then(response = response.text())
-                      .then((data) => {
-                        console.log(data)
-                        const subpageTargetNode = document.getElementById("subpageTarget");
-                        subpageTargetNode.innerHTML = data
-                      })
-                      .catch((err) => {
+            // console.log(data)
+            if (data) {
+              const subpageTargetNode = document.getElementById("subpageStart");
 
-                      });
-                  }
-                </script>
+              subpageTargetNode.nextElementSibling.remove();
+              subpageTargetNode.insertAdjacentHTML("afterend", data);
+            }
           })
           .catch((err) => {
-
           });
       }
-    </script>-->
+
+      const tabs = document.getElementById("tabsList");
+      tabs.addEventListener("click", (event) => {
+        const tab = event.target.closest("li");
+        if (!tab) {
+          return;
+        }
+        // console.log("tab data", tab);
+        const tabItemNodeId = tab.id;
+        fetchSubpage(tabItemNodeId)
+      })
+    </script>
+
   </body>
 </html>
