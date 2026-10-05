@@ -1,0 +1,12 @@
+{
+  "languages": {
+    "HTML": {
+      "indent_guides": {
+        "background_coloring": "indent_aware",
+        "coloring": "indent_aware"
+      },
+      "auto_indent": "preserve_indent",
+      "hard_tabs": true
+    }
+  }
+}

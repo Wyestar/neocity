@@ -1,111 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The web site of gevurztraminer</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The web site of gevurztraminer</title>
+	<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+	<!--<script src="jquery.min.js"></script>-->
+	<!--<script type="text/javascript" src="dist/purify.min.js"></script>-->
+</head>
+<body>
+	<script src="env.js"></script>
+	<div class="main-page">
+		<header id="headerTarget" class="header">
+			<div class="banner-container">
+				<div class="name-container">
+					<h1 class="name">gevurztraminer</h1>
+				</div>
+				<div class="marquee-container">
+					<marquee behavior="alternate" direction="down" class="marquee-1">
+						<marquee behavior="alternate" direction="left" class="marquee-2">
+							Be Attitude for Gains
+						</marquee>
+					</marquee>
+				</div>
+			</div>
 
-    <script src="jquery.min.js"></script>
-    <!--<script type="text/javascript" src="dist/purify.min.js"></script>-->
-  </head>
-  <body>
-  	<script src="env.js"></script>
-    <div class="main-page">
-        <div class="header">
-		        <div class="banner-container">
-								<div class="name-container">
-		        			<h1 class="name">gevurztraminer</h1>
-								</div>
-								<div class="marquee-container">
-									<marquee behavior="alternate" direction="down" class="marquee-1">
-										<marquee behavior="alternate" direction="left" class="marquee-2">
-											Be Attitude for Gains
-										</marquee>
-									</marquee>
-								</div>
-		        </div>
+			<p>[tabs to other pages. some are maybe working.]</p>
+			<ul id="tabsList" class="tabs">
+				<li class="tab-item"><a href="/">nexus</a></li>
+				<div class="tab-divider"></div>
+				<li id="daaGei" class="tab-item">打機</li>
+				<div class="tab-divider"></div>
+				<li id="brainOutput" class="tab-item">brain output</li>
+				<div class="tab-divider"></div>
 
-            <p>[tabs to other pages. some are maybe working.]</p>
-            <ul id="tabsList" class="tabs">
-              <li class="tab-item"><a href="/">nexus</a></li>
-              <div class="tab-divider"></div>
-              <li id="daaGei" class="tab-item">打機</li>
-              <div class="tab-divider"></div>
-              <li id="brainOutput" class="tab-item">brain output</li>
-              <div class="tab-divider"></div>
+				<li id="haleiwaWeather" class="tab-item">ke aniau o Haleʻiwa</li>
+				<!--<li class="tab-item"><a href ="subpages/haleiwaWeather.html">Ke aniau o Haleʻiwa</a></li>-->
 
-              <li id="haleiwaWeather" class="tab-item">ke aniau o Haleʻiwa</li>
-              <!--<li class="tab-item"><a href ="subpages/haleiwaWeather.html">Ke aniau o Haleʻiwa</a></li>-->
+				<div class="tab-divider"></div>
+				<li id="randomImage" class="tab-item">random image</li>
+				<!--<li class="tab-item"><a href="subpages/randomImage.html">Random image</a></li>-->
+				<div class="tab-divider"></div>
+				<li id="aboutMe" class="tab-item">私についてや好きなもの</li>
+			</ul>
+		</header>
 
-              <div class="tab-divider"></div>
-              <li id="randomImage" class="tab-item">random image</li>
-              <!--<li class="tab-item"><a href="subpages/randomImage.html">Random image</a></li>-->
-              <div class="tab-divider"></div>
-              <li id="aboutMe" class="tab-item">私についてや好きなもの</li>
-            </ul>
-        </div>
+		<div id="subpageStart"></div>
+			<div class="torso" id="subpageTarget">
+				<div class="nexus">
+					<div class="nexus-top">
+						<h2 class="nexus-h1">
+							greetings. you are cool
+						</h2>
+					</div>
 
-        <div id="subpageStart"></div>
-        <div class="torso" id="subpageTarget">
-	        <div class="nexus">
-						<div class="nexus-top">
-            	<h2 class="nexus-h1">greetings. you are cool</h2>
-						</div>
+					<p>welcome to my neocity. i used to give out koala cookies to visitors but i can't open the pantry anymore because there's a huge spider inside. spiders are neat, but this one is always yelling with a thick Wenzhou accent and flipping a balisong around. but don't worry, what i do have instead are several tabs that lead to funky subpages (funk levels are subjective). explore around and check things out. each page has a special meaning to me that may or may not be elaborated on.</p>
+				</div>
+			</div>
+		<div id="subpageEnd"></div>
 
-            <p>welcome to my neocity. i used to give out koala cookies to visitors but i can't open the pantry anymore because there's a huge spider inside. spiders are neat, but this one is always yelling with a thick Wenzhou accent and flipping a balisong around. but don't worry, what i do have instead are several tabs that lead to funky subpages (funk levels are subjective). explore around and check things out. each page has a special meaning to me that may or may not be elaborated on.</p>
-	        </div>
+		<footer id="footerTarget"></footer>
+	</div>
 
-					<!--subpage module test-->
-					<!--<script type="module">
-					  import randomImageNode from "./subpages/randomImage.html";
-						const subpageTargetNode = document.getElementById("subpageTarget");
-						subpageTargetNode.appendChild(randomImageNode)
-					</script>-->
-        </div>
-        <div id="subpageEnd"></div>
+	<!--scripts, move to js files?-->
+	<script>
+		console.log(window.env.ENVIRONMENT);
+		const fetchSubpage = (subpageName) => {
+			fetch("http://localhost:8000/subpages/"+subpageName+".html")
+				.then((response) => {
+					if (response) {
+						return response.text();
+					}
+				})
+				.then((data) => {
+					console.log('INDEX FETCH: ', data)
+					if (data) {
+						const subpageTargetNode = document.getElementById("subpageWrapper");
+						subpageTargetNode.innerHTML="";
+						// subpageTargetNode.removeChild(subpageTargetNode.firstChild);
+						subpageTargetNode.innerHTML=data;
+						// subpageTargetNode.nextElementSibling.remove();
+						// subpageTargetNode.insertAdjacentHTML("afterend", data);
+					}
+				})
+				.catch((err) => {});
+		}
 
-        <div class="footer">
-            working on this neocity for fun mostly
-        </div>
-    </div>
+		const tabs = document.getElementById("tabsList");
+		tabs.addEventListener("click", (event) => {
+			const tab = event.target.closest("li");
+			if (!tab) { return; }
+			// console.log("tab data", tab);
+			const tabItemNodeId = tab.id;
+			fetchSubpage(tabItemNodeId)
+		})
 
-    <script>
-      console.log(window.env.ENVIRONMENT);
-          // <script type="module" src="component.js">
-          // load directly into html
+		fetch('./components/footer.html')
+			.then(res => res.text())
+			.then(data => {
+				console.log('index footer fetch', data);
 
-      const fetchSubpage = (subpageName) => {
-        fetch("http://localhost:8000/subpages/"+subpageName+".html")
-          .then((response) => {
-            if (response) {
-              return response.text();
-            }
-          })
-          .then((data) => {
-            // console.log(data)
-            if (data) {
-              const subpageTargetNode = document.getElementById("subpageStart");
+				const footerNode = document.getElementById('footerTarget');
+				footerNode.innerHTML = data
+			});
+	</script>
 
-              subpageTargetNode.nextElementSibling.remove();
-              subpageTargetNode.insertAdjacentHTML("afterend", data);
-            }
-          })
-          .catch((err) => {
-          });
-      }
-
-      const tabs = document.getElementById("tabsList");
-      tabs.addEventListener("click", (event) => {
-        const tab = event.target.closest("li");
-        if (!tab) {
-          return;
-        }
-        // console.log("tab data", tab);
-        const tabItemNodeId = tab.id;
-        fetchSubpage(tabItemNodeId)
-      })
-    </script>
-
-  </body>
+</body>
 </html>

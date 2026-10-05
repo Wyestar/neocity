@@ -78,7 +78,6 @@ body {
     width: fit-content;
     margin: auto;
     padding: 5px;
-    /*border-right: 2px dotted #6F6F6F;*/
 }
 
 .tab-divider {
@@ -88,10 +87,6 @@ body {
     background-color: #6F6F6F;
     align-self: center;
 }
-
-/*.tab-item:last-child {
-    border-right: none;
-}*/
 
 .torso {
     background-color: #F0F0F0;
@@ -106,16 +101,10 @@ body {
     justify-content: center;
 }
 
-/*.nexus-h1 {
-    font-style: ;
-}*/
-
 
 .footer {
     margin: 10px 0px;
     padding: 15px;
     background-color: #6F6F6F;
     color: #000000;
-    /*border-top: 3px dotted #26a269;*/
-    /*border: 2px coral*/
 }
