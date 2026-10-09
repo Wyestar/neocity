@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>The web site of gevurztraminer</title>
-	<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="./style.css" rel="stylesheet" type="text/css" media="all">
 	<!--<script src="jquery.min.js"></script>-->
 	<!--<script type="text/javascript" src="dist/purify.min.js"></script>-->
 </head>
@@ -28,20 +28,21 @@
 			<p>[tabs to other pages. some are maybe working.]</p>
 			<ul id="tabsList" class="tabs">
 				<li class="tab-item"><a href="/">nexus</a></li>
-				<div class="tab-divider"></div>
-				<li id="daaGei" class="tab-item">打機</li>
-				<div class="tab-divider"></div>
-				<li id="brainOutput" class="tab-item">brain output</li>
-				<div class="tab-divider"></div>
-
-				<li id="haleiwaWeather" class="tab-item">ke aniau o Haleʻiwa</li>
-				<!--<li class="tab-item"><a href ="subpages/haleiwaWeather.html">Ke aniau o Haleʻiwa</a></li>-->
 
 				<div class="tab-divider"></div>
-				<li id="randomImage" class="tab-item">random image</li>
-				<!--<li class="tab-item"><a href="subpages/randomImage.html">Random image</a></li>-->
+				<li id="daaGei" class="tab-item"><a href="/subpages/daaGei.html">打機</a></li>
+
 				<div class="tab-divider"></div>
-				<li id="aboutMe" class="tab-item">私についてや好きなもの</li>
+				<li id="brainOutput" class="tab-item"><a href="/subpages/brainOutput.html">brain output</a></li>
+
+				<div class="tab-divider"></div>
+				<li id="haleiwaWeather" class="tab-item"><a href ="/subpages/haleiwaWeather.html">ke aniau o Haleʻiwa</a></li>
+
+				<div class="tab-divider"></div>
+				<li id="randomImage" class="tab-item"><a href="/subpages/randomImage.html">random image</a></li>
+
+				<div class="tab-divider"></div>
+				<li id="aboutMe" class="tab-item"><a href="/subpages/aboutMe.html">私についてや好きなもの</a></li>
 			</ul>
 		</header>
 
@@ -65,6 +66,9 @@
 	<!--scripts, move to js files?-->
 	<script>
 		console.log(window.env.ENVIRONMENT);
+
+		// fetch subpages that are text only, and use innerHTML
+		// aboutMe and brainOutput only
 		const fetchSubpage = (subpageName) => {
 			fetch("http://localhost:8000/subpages/"+subpageName+".html")
 				.then((response) => {
@@ -75,26 +79,29 @@
 				.then((data) => {
 					console.log('INDEX FETCH: ', data)
 					if (data) {
-						const subpageTargetNode = document.getElementById("subpageWrapper");
-						subpageTargetNode.innerHTML="";
+						// const subpageTargetNode = document.getElementById("subpageWrapper");
+						// subpageTargetNode.innerHTML="";
 						// subpageTargetNode.removeChild(subpageTargetNode.firstChild);
-						subpageTargetNode.innerHTML=data;
+						// subpageTargetNode.innerHTML=data;
 						// subpageTargetNode.nextElementSibling.remove();
 						// subpageTargetNode.insertAdjacentHTML("afterend", data);
 					}
 				})
 				.catch((err) => {});
 		}
-
 		const tabs = document.getElementById("tabsList");
 		tabs.addEventListener("click", (event) => {
 			const tab = event.target.closest("li");
 			if (!tab) { return; }
-			// console.log("tab data", tab);
+			console.log("tab data", tab);
 			const tabItemNodeId = tab.id;
-			fetchSubpage(tabItemNodeId)
+			// fetchSubpage(tabItemNodeId)
 		})
 
+		// fetch subpages with interactivity
+		// random image, mancala, haleiwa (control weather visualization)
+
+		// fetch header and footer
 		fetch('./components/footer.html')
 			.then(res => res.text())
 			.then(data => {

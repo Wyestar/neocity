@@ -63,6 +63,7 @@ body {
 .marquee-2 {
     height: 100%;
     color: #8ff0a4;
+    /*marquee font*/
 }
 
 .tabs {
@@ -73,11 +74,16 @@ body {
     list-style-type: none;
 }
 
-.tab-item {
+.tab-item > a {
     cursor: pointer;
     width: fit-content;
     margin: auto;
     padding: 5px;
+}
+
+.tab-item > a {
+	color: #000000;
+    text-decoration: none;
 }
 
 .tab-divider {
@@ -107,4 +113,5 @@ body {
     padding: 15px;
     background-color: #6F6F6F;
     color: #000000;
+    /*color: coral;*/
 }

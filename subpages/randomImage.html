@@ -1,13 +1,38 @@
-<div>
-	<div>
-		<p><a href="/">return to the nexus</a></p>
-		<p>click the button to see a different random image</p>
-		<div>
-			<button id="randomImageBtn">button</button>
-		</div>
-	</div>
-	<div>
-		<img id="randomImageNode" src="" alt="random image node"/>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The web site of gevurztraminer</title>
+	<link href="../style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="./randomImage.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+	<div class="main-page">
+		<header id="headerTarget" class="header">
+			<div id="bannerContainer" class="banner-container">
+			</div>
+
+			<div id="tabsContainer">
+			</div>
+		</header>
+
+		<div id="subpageStart"></div>
+			<div id="subpageTarget" class="torso">
+				<div id="randomImageTarget">
+					<p><a href="/">return to the nexus</a></p>
+					<p>click the button to see a different random image</p>
+					<div>
+						<button id="randomImageBtn">button</button>
+					</div>
+					<div class="ri-loader">
+						<img id="randomImageNode" src="" alt="random image node"/>
+					</div>
+				</div>
+			</div>
+		<div id="subpageEnd"></div>
+
+		<footer id="footerTarget"></footer>
 	</div>
 
 	<script>
@@ -29,14 +54,28 @@
 			return "https://picsum.photos/"+randomX()+"/"+randomY();
 		}
 
+		const toggleRILoaderNodeAnimation = (toggleBool) => {
+			const riLoaderNode = document.getElementsByClassName("ri-loader");
+
+			if (toggleBool) {
+				riLoaderNode[0].style.animation = "none";
+			} else {
+				riLoaderNode[0].style.animation = "pulse 1.5s infinite ease-in-out";
+			}
+		}
+
 		const updateRandomImageNode = () => {
+			toggleRILoaderNodeAnimation(true)
 			console.log("updating RI node")
 			const randomImageUrl = createRandomImageUrl();
 			const randomImageNode = document.getElementById("randomImageNode")
 
 			if (randomImageNode) {
 				randomImageNode.src = randomImageUrl;
+				toggleRILoaderNodeAnimation(false)
 			}
+
+			return true;
 		}
 
 		const randomImageBtn = document.getElementById("randomImageBtn");
@@ -46,7 +85,25 @@
 		}
 		console.log("updating RI in script")
 
-		updateRandomImageNode()
+		if (updateRandomImageNode()) {
+			console.log("RI in if")
 
+			setTimeout(toggleRILoaderNodeAnimation(false), 1500)
+		}
+		fetch('../components/header.html')
+			.then(res => res.text())
+			.then(data => {
+				const headerNode = document.getElementById("headerTarget");
+				headerNode.innerHTML = data
+			});
+
+		fetch('../components/footer.html')
+			.then(res => res.text())
+			.then(data => {
+				const footerNode = document.getElementById('footerTarget');
+				footerNode.innerHTML = data
+			});
 	</script>
-</div>
+
+</body>
+</html>
