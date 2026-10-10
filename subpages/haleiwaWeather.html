@@ -1,42 +1,75 @@
-<div id="haleiwaWeatherSubpage">
-	weather of haleiwa
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The web site of gevurztraminer</title>
+	<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+	<script src="env.js"></script>
+	<div class="main-page">
+		<header id="headerTarget" class="header">
+			<div id="bannerContainer" class="banner-container">
+			</div>
 
+			<div id="tabsContainer">
+			</div>
+		</header>
+
+		<div id="subpageStart"></div>
+			<div id="subpageTarget" class="torso">
+				<div id="haleiwaWeatherSubpage">
+					weather of haleiwa
+					<div>
+						current weather:
+						<div id="timeDisplay"></div>
+						<div id="temperatureDisplay"></div>
+						<div id="relativeHumidityDisplay"></div>
+					</div>
+				</div>
+			</div>
+		<div id="subpageEnd"></div>
+
+		<footer id="footerTarget"></footer>
+	</div>
+
+	<!--scripts go here-->
 	<script>
-// 	  const momo = new MutationObserver((mutations) => {
-// 			mutations.forEach((mutation) => {
-// 			  if (mutation.addedNodes.length) {
-// 					const target = document.getElementById("haleiwaWeatherSubpage");
-// 					if (target) {
-// 					 	console.log("haleiwa weather check")
-//
-// 							// momo.disconnect();
-// 					}
-// 				}
-// 			})
-// 		})
-//
-// 		const subpageStartNode = document.getElementById("subpageTarget");
-// 		momo.observe(subpageStartNode, { attributes: true, childList: true, subtree: true })
-
-
 		const getHaleiwaWeatherData = () => {
-			fetch("https://api.open-meteo.com/v1/forecast?latitude=21.58849&longitude=-158.11051&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto")
+			const fetchedHwData = fetch("https://api.open-meteo.com/v1/forecast?latitude=21.58849&longitude=-158.11051&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=auto")
 				.then(response => response.json())
-				.then(data => {
+				.then((data) => {
 					console.log("haleiwa raw data", data);
 
-					return data;
+					const hwCurrent = data.current;
+					const hwUnits = data.current_units;
+
+					const timeDisplay = hwCurrent.time.split("T")[1];
+					const dateDisplay = null;
+					const timeDisplayNode = document.getElementById("timeDisplay");
+					timeDisplayNode.textContent = timeDisplay;
+
+					const temperatureDisplay = hwCurrent.temperature_2m + hwUnits.temperature_2m;
+					const temperatureDisplayNode = document.getElementById("temperatureDisplay");
+					temperatureDisplayNode.textContent = temperatureDisplay;
+
+
+					const relativeHumidityDisplay = hwCurrent.relative_humidity_2m + hwUnits.relative_humidity_2m;
+					const relativeHumidityDisplayNode = document.getElementById("relativeHumidityDisplay");
+					relativeHumidityDisplayNode.textContent = relativeHumidityDisplay;
+
 				})
 		}
 
-// 		const haleiwaWeatherSubpage = document.getElementById("haleiwaWeatherSubpage");
-//
-// 		if (haleiwaWeatherSubpage) {
-// 		console.log("haleiwa node exists");
-// 		console.log("haleiwa raw data", haleiwaRawData());
-// 			// $(document).ready(haleiwaRawData())
-// 		}
-		const hwData = getHaleiwaWeatherData();
-		console.log("haleiwa raw data", hwData);
+		getHaleiwaWeatherData()
 	</script>
-</div>
+
+	<script type="module">
+		import { getHeader, getFooter}  from "../js/headerAndFooter.js"
+		getHeader();
+		getFooter();
+	</script>
+
+</body>
+</html>

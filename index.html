@@ -15,6 +15,7 @@
 			<div class="banner-container">
 				<div class="name-container">
 					<h1 class="name">gevurztraminer</h1>
+					<pre id="logo"></pre>
 				</div>
 				<div class="marquee-container">
 					<marquee behavior="alternate" direction="down" class="marquee-1">
@@ -67,8 +68,24 @@
 	<script>
 		console.log(window.env.ENVIRONMENT);
 
+		// ascii animation
+		const logoFrames = ["===", "+++", "~~~"]
+		const logoNode = document.getElementById("logo");
+		let currentFrame = 0;
+		const fps = 2;
+
+		const logoAnimate = () => {
+			logoNode.textContent = logoFrames[currentFrame];
+
+			currentFrame = (currentFrame + 1) % logoFrames.length;
+			console.log("logo", currentFrame);
+			setTimeout(logoAnimate, 1000 / fps);
+		}
+
+		logoAnimate();
+
 		// fetch subpages that are text only, and use innerHTML
-		// aboutMe and brainOutput only
+		// haleiwaWeather, aboutMe, and brainOutput only
 		const fetchSubpage = (subpageName) => {
 			fetch("http://localhost:8000/subpages/"+subpageName+".html")
 				.then((response) => {
@@ -77,7 +94,6 @@
 					}
 				})
 				.then((data) => {
-					console.log('INDEX FETCH: ', data)
 					if (data) {
 						// const subpageTargetNode = document.getElementById("subpageWrapper");
 						// subpageTargetNode.innerHTML="";

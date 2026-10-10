@@ -90,20 +90,12 @@
 
 			setTimeout(toggleRILoaderNodeAnimation(false), 1500)
 		}
-		fetch('../components/header.html')
-			.then(res => res.text())
-			.then(data => {
-				const headerNode = document.getElementById("headerTarget");
-				headerNode.innerHTML = data
-			});
-
-		fetch('../components/footer.html')
-			.then(res => res.text())
-			.then(data => {
-				const footerNode = document.getElementById('footerTarget');
-				footerNode.innerHTML = data
-			});
 	</script>
 
+	<script type="module">
+		import { getHeader, getFooter}  from "../js/headerAndFooter.js"
+		getHeader();
+		getFooter();
+	</script>
 </body>
 </html>

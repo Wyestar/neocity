@@ -44,8 +44,14 @@ body {
 
 .banner-container {
     background-color: #6F6F6F;
-
 }
+
+.name-container {
+	display: flex;
+}
+
+
+
 
 .marquee-container {
     height: 80px;
