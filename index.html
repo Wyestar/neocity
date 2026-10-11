@@ -12,10 +12,17 @@
 	<script src="env.js"></script>
 	<div class="main-page">
 		<header id="headerTarget" class="header">
-			<div class="banner-container">
-				<div class="name-container">
-					<h1 class="name">gevurztraminer</h1>
-					<pre id="logo"></pre>
+			<div class="hero-container">
+				<div class="banner-container">
+					<div class="name-container">
+						<h1 class="name">gevurztraminer</h1>
+					</div>
+					<div class="logo-container">
+						<button id="logoButton" class="button-89" role="button">ascii is still cool</button>
+						<div id="logoWrapper" class="logo-wontainer">
+							<pre id="logo"></pre>
+						</div>
+					</div>
 				</div>
 				<div class="marquee-container">
 					<marquee behavior="alternate" direction="down" class="marquee-1">
@@ -69,20 +76,48 @@
 		console.log(window.env.ENVIRONMENT);
 
 		// ascii animation
-		const logoFrames = ["===", "+++", "~~~"]
-		const logoNode = document.getElementById("logo");
-		let currentFrame = 0;
-		const fps = 2;
+		const revealAndAnimatedLogo = () => {
+			const gevDown = ` ░░░░░░  ░░░░░░░ ░░    ░░
+▒▒       ▒▒      ▒▒    ▒▒
+▒▒   ▒▒▒ ▒▒▒▒▒   ▒▒    ▒▒
+▓▓    ▓▓ ▓▓       ▓▓  ▓▓
+ ██████  ███████   ████`;
+			const gevUp = ` ██████  ███████ ██    ██
+▓▓       ▓▓      ▓▓    ▓▓
+▒▒   ▒▒▒ ▒▒▒▒▒   ▒▒    ▒▒
+▒▒    ▒▒ ▒▒       ▒▒  ▒▒
+ ░░░░░░  ░░░░░░░   ░░░░`;
 
-		const logoAnimate = () => {
-			logoNode.textContent = logoFrames[currentFrame];
+			const logoFrames = [
+				gevDown,
+				gevUp
+			];
+			const logoNode = document.getElementById("logo");
+			let currentFrame = 0;
+			const fps = 2;
 
-			currentFrame = (currentFrame + 1) % logoFrames.length;
-			console.log("logo", currentFrame);
-			setTimeout(logoAnimate, 1000 / fps);
+			const logoAnimate = () => {
+				logoNode.textContent = logoFrames[currentFrame];
+				currentFrame = (currentFrame + 1) % logoFrames.length;
+				console.log("logo", currentFrame);
+				setTimeout(logoAnimate, 1000 / fps);
+			}
+
+			const logoWrapperNode = document.getElementById("logoWrapper")
+			const logoCSS = {
+				visibility: 'visible'
+			};
+
+
+			Object.assign(logoWrapperNode.style, logoCSS);
+
+			logoAnimate();
 		}
+		const logoButtonNode = document.getElementById("logoButton");
 
-		logoAnimate();
+		if (logoButtonNode) {
+			logoButtonNode.addEventListener("click", revealAndAnimatedLogo)
+		}
 
 		// fetch subpages that are text only, and use innerHTML
 		// haleiwaWeather, aboutMe, and brainOutput only
