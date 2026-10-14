@@ -1,47 +1,260 @@
 {
-  "latitude": 21.61687,
-  "longitude": -158.07574,
-  "generationtime_ms": 1.2090206146240234,
-  "utc_offset_seconds": -36000,
-  "timezone": "Pacific/Honolulu",
-  "timezone_abbreviation": "GMT-10",
-  "elevation": 3,
-  "current_units": {
-    "time": "iso8601",
-    "interval": "seconds",
-    "temperature_2m": "°C",
-    "relative_humidity_2m": "%",
-    "apparent_temperature": "°C",
-    "is_day": "",
-    "precipitation": "mm",
-    "rain": "mm",
-    "showers": "mm",
-    "snowfall": "cm",
-    "weather_code": "wmo code",
-    "cloud_cover": "%",
-    "pressure_msl": "hPa",
-    "surface_pressure": "hPa",
-    "wind_speed_10m": "km/h",
-    "wind_direction_10m": "°",
-    "wind_gusts_10m": "km/h"
-  },
-  "current": {
-    "time": "2026-10-09T12:00",
-    "interval": 900,
-    "temperature_2m": 29.7,
-    "relative_humidity_2m": 66,
-    "apparent_temperature": 35.5,
-    "is_day": 1,
-    "precipitation": 0.2,
-    "rain": 0.1,
-    "showers": 0.1,
-    "snowfall": 0,
-    "weather_code": 53,
-    "cloud_cover": 23,
-    "pressure_msl": 1014.9,
-    "surface_pressure": 1014.6,
-    "wind_speed_10m": 8.3,
-    "wind_direction_10m": 316,
-    "wind_gusts_10m": 23
-  }
+	"api_req": "https://api.open-meteo.com/v1/forecast?latitude=21.58849&longitude=-158.11051&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_min,apparent_temperature_max,uv_index_max,uv_index_clear_sky_max,sunrise,sunset,daylight_duration,sunshine_duration,moonset,moonrise,moon_phase,rain_sum,showers_sum,snowfall_sum,precipitation_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration,temperature_2m_mean,apparent_temperature_mean,cape_mean,cape_max,cape_min,cloud_cover_mean,cloud_cover_max,cloud_cover_min,dew_point_2m_mean,dew_point_2m_max,dew_point_2m_min,et0_fao_evapotranspiration_sum,growing_degree_days_base_0_limit_50,leaf_wetness_probability_mean,precipitation_probability_mean,precipitation_probability_min,relative_humidity_2m_mean,relative_humidity_2m_max,relative_humidity_2m_min,snowfall_water_equivalent_sum,pressure_msl_mean,pressure_msl_max,pressure_msl_min,surface_pressure_mean,surface_pressure_max,surface_pressure_min,updraft_max,visibility_mean,visibility_min,visibility_max,wind_gusts_10m_mean,wind_speed_10m_mean,wind_gusts_10m_min,wind_speed_10m_min,wet_bulb_temperature_2m_mean,wet_bulb_temperature_2m_max,wet_bulb_temperature_2m_min,vapour_pressure_deficit_max&timezone=auto&start_date=2026-10-13&end_date=2026-10-21",
+	"latitude": 21.61687,
+	"longitude": -158.07574,
+	"generationtime_ms": 22.71103858947754,
+	"utc_offset_seconds": -36000,
+	"timezone": "Pacific/Honolulu",
+	"timezone_abbreviation": "GMT-10",
+	"elevation": 3.0,
+	"daily_units": {
+		"time": "iso8601",
+		"weather_code": "wmo code",
+		"temperature_2m_max": "°C",
+		"temperature_2m_min": "°C",
+		"apparent_temperature_min": "°C",
+		"apparent_temperature_max": "°C",
+		"uv_index_max": "",
+		"uv_index_clear_sky_max": "",
+		"sunrise": "iso8601",
+		"sunset": "iso8601",
+		"daylight_duration": "s",
+		"sunshine_duration": "s",
+		"moonset": "iso8601",
+		"moonrise": "iso8601",
+		"moon_phase": "fraction",
+		"rain_sum": "mm",
+		"showers_sum": "mm",
+		"snowfall_sum": "cm",
+		"precipitation_sum": "mm",
+		"precipitation_hours": "h",
+		"precipitation_probability_max": "%",
+		"wind_speed_10m_max": "km/h",
+		"wind_gusts_10m_max": "km/h",
+		"wind_direction_10m_dominant": "°",
+		"shortwave_radiation_sum": "MJ/m²",
+		"et0_fao_evapotranspiration": "mm",
+		"temperature_2m_mean": "°C",
+		"apparent_temperature_mean": "°C",
+		"cape_mean": "J/kg",
+		"cape_max": "J/kg",
+		"cape_min": "J/kg",
+		"cloud_cover_mean": "%",
+		"cloud_cover_max": "%",
+		"cloud_cover_min": "%",
+		"dew_point_2m_mean": "°C",
+		"dew_point_2m_max": "°C",
+		"dew_point_2m_min": "°C",
+		"et0_fao_evapotranspiration_sum": "mm",
+		"growing_degree_days_base_0_limit_50": "GGDc",
+		"leaf_wetness_probability_mean": "%",
+		"precipitation_probability_mean": "%",
+		"precipitation_probability_min": "%",
+		"relative_humidity_2m_mean": "%",
+		"relative_humidity_2m_max": "%",
+		"relative_humidity_2m_min": "%",
+		"snowfall_water_equivalent_sum": "mm",
+		"pressure_msl_mean": "hPa",
+		"pressure_msl_max": "hPa",
+		"pressure_msl_min": "hPa",
+		"surface_pressure_mean": "hPa",
+		"surface_pressure_max": "hPa",
+		"surface_pressure_min": "hPa",
+		"updraft_max": "m/s",
+		"visibility_mean": "m",
+		"visibility_min": "m",
+		"visibility_max": "m",
+		"wind_gusts_10m_mean": "km/h",
+		"wind_speed_10m_mean": "km/h",
+		"wind_gusts_10m_min": "km/h",
+		"wind_speed_10m_min": "km/h",
+		"wet_bulb_temperature_2m_mean": "°C",
+		"wet_bulb_temperature_2m_max": "°C",
+		"wet_bulb_temperature_2m_min": "°C",
+		"vapour_pressure_deficit_max": "kPa"
+	},
+	"daily": {
+		"time": [
+			"2026-10-13",
+			"2026-10-14",
+			"2026-10-15",
+			"2026-10-16",
+			"2026-10-17",
+			"2026-10-18",
+			"2026-10-19",
+			"2026-10-20",
+			"2026-10-21"
+		],
+		"weather_code": [51, 1, 51, 53, 51, 53, 53, 53, 51],
+		"temperature_2m_max": [
+			30.0, 29.1, 28.3, 28.9, 28.1, 27.4, 28.3, 26.9, 27.1
+		],
+		"temperature_2m_min": [
+			23.4, 22.1, 23.0, 22.6, 22.6, 22.7, 22.3, 21.4, 21.4
+		],
+		"apparent_temperature_min": [
+			26.4, 24.8, 25.4, 25.1, 24.4, 24.9, 24.8, 24.0, 23.5
+		],
+		"apparent_temperature_max": [
+			32.8, 32.1, 31.2, 30.8, 29.6, 28.9, 29.5, 28.6, 27.9
+		],
+		"uv_index_max": [7.7, 7.65, 7.6, 7.55, 7.5, 7.5, 7.4, 7.35, 7.35],
+		"uv_index_clear_sky_max": [7.7, 7.65, 7.6, 7.55, 7.5, 7.5, 7.4, 7.35, 7.3],
+		"sunrise": [
+			"2026-10-13T06:27",
+			"2026-10-14T06:27",
+			"2026-10-15T06:28",
+			"2026-10-16T06:28",
+			"2026-10-17T06:29",
+			"2026-10-18T06:29",
+			"2026-10-19T06:29",
+			"2026-10-20T06:30",
+			"2026-10-21T06:30"
+		],
+		"sunset": [
+			"2026-10-13T18:09",
+			"2026-10-14T18:08",
+			"2026-10-15T18:07",
+			"2026-10-16T18:06",
+			"2026-10-17T18:05",
+			"2026-10-18T18:05",
+			"2026-10-19T18:04",
+			"2026-10-20T18:03",
+			"2026-10-21T18:02"
+		],
+		"daylight_duration": [
+			42097.6, 42025.55, 41953.58, 41881.77, 41810.17, 41738.82, 41667.79,
+			41597.15, 41526.94
+		],
+		"sunshine_duration": [
+			39987.63, 40250.65, 40263.69, 40277.02, 40290.6, 39801.0, 40066.51,
+			40069.84, 40291.6
+		],
+		"moonset": [
+			"2026-10-13T20:14",
+			"2026-10-14T21:01",
+			"2026-10-15T21:52",
+			"2026-10-16T22:45",
+			"2026-10-17T23:40",
+			null,
+			"2026-10-19T00:33",
+			"2026-10-20T01:28",
+			"2026-10-21T02:20"
+		],
+		"moonrise": [
+			"2026-10-13T09:19",
+			"2026-10-14T10:14",
+			"2026-10-15T11:08",
+			"2026-10-16T11:58",
+			"2026-10-17T12:45",
+			"2026-10-18T13:28",
+			"2026-10-19T14:06",
+			"2026-10-20T14:42",
+			"2026-10-21T15:16"
+		],
+		"moon_phase": [
+			0.105, 0.136, 0.167, 0.197, 0.227, 0.257, 0.288, 0.319, 0.351
+		],
+		"rain_sum": [0.2, 0.0, 2.3, 3.9, 1.5, 5.6, 7.1, 8.6, 1.2],
+		"showers_sum": [0.0, 0.0, 0.8, 0.0, 0.0, 0.6, 0.3, 1.8, 0.6],
+		"snowfall_sum": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+		"precipitation_sum": [0.2, 0.0, 3.1, 3.9, 1.5, 6.2, 7.4, 10.4, 1.8],
+		"precipitation_hours": [2.0, 0.0, 17.0, 11.0, 10.0, 18.0, 24.0, 24.0, 15.0],
+		"precipitation_probability_max": [29, 37, 94, 88, 76, 88, 78, 70, 76],
+		"wind_speed_10m_max": [
+			17.2, 16.3, 21.9, 24.7, 25.2, 22.3, 23.0, 21.4, 26.5
+		],
+		"wind_gusts_10m_max": [
+			42.8, 40.3, 51.5, 56.9, 58.0, 53.6, 54.4, 55.4, 60.8
+		],
+		"wind_direction_10m_dominant": [91, 70, 80, 78, 70, 78, 79, 80, 73],
+		"shortwave_radiation_sum": [
+			21.16, 21.88, 19.89, 20.36, 20.88, 19.63, 18.75, 18.88, 19.01
+		],
+		"et0_fao_evapotranspiration": [
+			4.65, 4.86, 4.38, 4.51, 4.67, 4.05, 3.84, 3.47, 4.47
+		],
+		"temperature_2m_mean": [
+			25.9, 25.3, 25.3, 25.3, 25.0, 24.6, 24.4, 23.9, 24.6
+		],
+		"apparent_temperature_mean": [
+			28.7, 27.5, 27.2, 27.0, 26.3, 26.3, 26.3, 25.9, 25.3
+		],
+		"cape_mean": [196.7, 10.8, 64.2, 75.8, 45.4, 94.2, 356.3, 487.5, 266.7],
+		"cape_max": [370.0, 30.0, 230.0, 300.0, 160.0, 180.0, 540.0, 610.0, 490.0],
+		"cape_min": [50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 140.0, 310.0, 40.0],
+		"cloud_cover_mean": [12, 8, 25, 44, 25, 44, 46, 57, 34],
+		"cloud_cover_max": [47, 20, 41, 92, 42, 81, 89, 100, 53],
+		"cloud_cover_min": [0, 2, 12, 15, 4, 6, 19, 34, 16],
+		"dew_point_2m_mean": [20.9, 19.8, 21.1, 21.1, 20.6, 20.7, 21.2, 21.5, 20.0],
+		"dew_point_2m_max": [22.1, 20.5, 21.8, 22.7, 22.0, 22.2, 22.1, 21.9, 21.2],
+		"dew_point_2m_min": [19.1, 19.1, 20.2, 19.9, 18.7, 19.6, 20.3, 20.6, 18.1],
+		"et0_fao_evapotranspiration_sum": [
+			4.65, 4.86, 4.38, 4.51, 4.67, 4.05, 3.84, 3.47, 4.47
+		],
+		"growing_degree_days_base_0_limit_50": [
+			25.86, 25.3, 25.25, 25.23, 25.01, 24.5, 24.37, 23.83, 24.66
+		],
+		"leaf_wetness_probability_mean": [33, 25, 31, 38, 32, 34, 50, 61, 29],
+		"precipitation_probability_mean": [9, 5, 66, 60, 60, 81, 67, 58, 64],
+		"precipitation_probability_min": [0, 0, 33, 30, 43, 63, 58, 43, 54],
+		"relative_humidity_2m_mean": [75, 73, 78, 79, 78, 80, 83, 87, 76],
+		"relative_humidity_2m_max": [92, 87, 90, 97, 95, 94, 98, 96, 93],
+		"relative_humidity_2m_min": [52, 56, 67, 59, 62, 72, 65, 74, 63],
+		"snowfall_water_equivalent_sum": [
+			0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+		],
+		"pressure_msl_mean": [
+			1014.6, 1015.5, 1015.5, 1016.3, 1017.3, 1017.3, 1017.1, 1016.9, 1016.4
+		],
+		"pressure_msl_max": [
+			1016.0, 1016.8, 1017.4, 1017.9, 1018.9, 1018.6, 1018.4, 1017.7, 1017.1
+		],
+		"pressure_msl_min": [
+			1012.8, 1014.0, 1013.8, 1014.5, 1016.2, 1016.0, 1015.8, 1015.6, 1015.0
+		],
+		"surface_pressure_mean": [
+			1014.3, 1015.1, 1015.2, 1015.9, 1017.0, 1016.9, 1016.7, 1016.5, 1016.0
+		],
+		"surface_pressure_max": [
+			1015.6, 1016.4, 1017.0, 1017.5, 1018.6, 1018.3, 1018.0, 1017.3, 1016.7
+		],
+		"surface_pressure_min": [
+			1012.5, 1013.7, 1013.5, 1014.2, 1015.8, 1015.6, 1015.5, 1015.3, 1014.7
+		],
+		"updraft_max": [null, null, null, null, null, null, null, null, null],
+		"visibility_mean": [
+			29296.67, 37923.33, 11910.83, 13700.0, 20211.67, 15630.0, 8567.5, 8183.33,
+			20023.33
+		],
+		"visibility_min": [
+			760.0, 12840.0, 5660.0, 3380.0, 6640.0, 4780.0, 3860.0, 5520.0, 9540.0
+		],
+		"visibility_max": [
+			50920.0, 50760.0, 20060.0, 23400.0, 36360.0, 41900.0, 15540.0, 14920.0,
+			45520.0
+		],
+		"wind_gusts_10m_mean": [
+			28.0, 28.8, 40.5, 45.8, 48.6, 44.4, 45.2, 46.4, 54.5
+		],
+		"wind_speed_10m_mean": [
+			11.8, 12.7, 18.1, 20.2, 21.1, 18.4, 18.5, 18.5, 22.6
+		],
+		"wind_gusts_10m_min": [
+			11.5, 16.6, 26.3, 36.0, 37.4, 34.9, 35.6, 37.4, 46.4
+		],
+		"wind_speed_10m_min": [4.8, 7.7, 12.6, 16.0, 17.1, 15.1, 15.5, 15.6, 15.7],
+		"wet_bulb_temperature_2m_mean": [
+			22.4, 21.5, 22.3, 22.3, 21.9, 21.8, 22.1, 22.1, 21.4
+		],
+		"wet_bulb_temperature_2m_max": [
+			23.5, 22.6, 23.5, 23.1, 22.7, 22.7, 22.7, 22.7, 22.4
+		],
+		"wet_bulb_temperature_2m_min": [
+			21.2, 20.5, 21.3, 21.3, 20.3, 21.0, 21.3, 21.3, 20.4
+		],
+		"vapour_pressure_deficit_max": [
+			2.04, 1.74, 1.27, 1.63, 1.45, 0.98, 1.28, 0.89, 1.25
+		]
+	}
 }
