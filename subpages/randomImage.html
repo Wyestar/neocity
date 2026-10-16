@@ -15,13 +15,14 @@
 		<div id="subpageStart"></div>
 			<div id="subpageTarget" class="torso">
 				<div id="randomImageTarget">
-					<p><a href="/">return to the nexus</a></p>
-					<p>click the button to see a different random image</p>
-					<div>
-						<button id="randomImageBtn">button</button>
+					<p class="ri-explanation">on this tab a random image of max dimensions 800 by 600 pixels appears in the center. you can use the counter to see how many times it takes to see a lobster. or whatever it is you desire to see. there is no guarantee you will see what you want to though. the counter will stop at 99 and stop working.</p>
+					<div class="ri-btn-container">
+						<button id="randomImageBtn">click this to see a different random image</button>
 					</div>
-					<div class="ri-loader">
-						<img id="randomImageNode" src="" alt="random image node"/>
+					<div class="ri-img-loader">
+						<div class="ri-img-wrapper">
+							<img id="randomImageNode" src="" alt="random image node"/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -50,7 +51,7 @@
 		}
 
 		const toggleRILoaderNodeAnimation = (toggleBool) => {
-			const riLoaderNode = document.getElementsByClassName("ri-loader");
+			const riLoaderNode = document.getElementsByClassName("ri-img-loader");
 
 			if (toggleBool) {
 				riLoaderNode[0].style.animation = "none";
@@ -58,6 +59,8 @@
 				riLoaderNode[0].style.animation = "pulse 1.5s infinite ease-in-out";
 			}
 		}
+
+		const buttonCounter = 0;
 
 		const updateRandomImageNode = () => {
 			toggleRILoaderNodeAnimation(true)
@@ -67,7 +70,9 @@
 
 			if (randomImageNode) {
 				randomImageNode.src = randomImageUrl;
-				toggleRILoaderNodeAnimation(false)
+				buttonCounter += 1;
+				setTimeout(toggleRILoaderNodeAnimation(true), 2500)
+				// toggleRILoaderNodeAnimation(false)
 			}
 
 			return true;
@@ -83,7 +88,7 @@
 		if (updateRandomImageNode()) {
 			console.log("RI in if")
 
-			setTimeout(toggleRILoaderNodeAnimation(false), 1500)
+			setTimeout(toggleRILoaderNodeAnimation(true), 2500)
 		}
 	</script>
 
