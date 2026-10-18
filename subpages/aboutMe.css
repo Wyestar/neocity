@@ -6,7 +6,6 @@
 	background-color: #B4B4B4;
 	/*#F3F3F3;*/
 	/*#939393;*/
-
 }
 
 .am-main {
@@ -38,7 +37,31 @@
 	margin: 0px auto;
 }
 
+details > summary {
+	list-style: none;
+	display: flex;
+	/*justify-content: space-between;*/
+	/*align-items: center;*/
+	cursor: pointer;
+	padding: 5px;
+}
+
+summary::after {
+	content: "\276F";
+}
+details[open] > summary::after {
+	content: "\FE3E";
+}
+
+details > p {
+	padding: 0 0 0 32px;
+}
+
 .am-favs {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+}
+
+.am-favs p {
+	margin: 3px 0 3px 5px;
 }
