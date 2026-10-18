@@ -1,0 +1,44 @@
+.am-header {
+	margin: auto;
+	padding: 15px 0px;
+	text-align: center;
+	font-weight: 600;
+	background-color: #B4B4B4;
+	/*#F3F3F3;*/
+	/*#939393;*/
+
+}
+
+.am-main {
+	margin: 10px auto;
+	text-align: center;
+	/*background-color: #B4B4B4;*/
+}
+
+.am-main-q {
+	font-style: italic;
+}
+
+.am-main hr {
+	border: none;
+	height: 2px;
+	background-color: #B4B4B4;
+	width: 80%;
+	margin: 2px auto;
+}
+
+.am-links {
+	margin: auto;
+	padding: 10px 0px;
+	text-align: center;
+	background-color: #B4B4B4;
+}
+
+.am-links p {
+	margin: 0px auto;
+}
+
+.am-favs {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
