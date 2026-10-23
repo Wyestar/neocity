@@ -15,11 +15,14 @@
 		<div id="subpageStart"></div>
 			<div id="subpageTarget" class="torso">
 				<div id="randomImageTarget">
-					<p class="ri-explanation">on this tab a random image of max dimensions 800 by 600 pixels appears in the center. you can use the counter to see how many times it takes to see a lobster. or whatever it is you desire to see. there is no guarantee you will see what you want to though. the counter will stop at 99 and stop working. also it is not working at all yet anyways.</p>
+					<p class="ri-explanation">on this tab a random image of max dimensions 800 by 600 pixels appears in the center. you can use the counter to see how many times it takes to see a lobster. or whatever it is you desire to see. there is no guarantee you will see what you want to though. the counter will stop at 9 and stop working and the last image will not be visible.</p>
 					<div class="ri-btn-container">
 						<button id="randomImageBtn">click this to see a different random image</button>
 					</div>
-					<div class="ri-img-loader">
+					<div id="riCounter" class="ri-counter">
+						counter: 0
+					</div>
+					<div class="ri-img-loader ri-img-loader-on">
 						<div class="ri-img-wrapper">
 							<img id="randomImageNode" src="" alt="random image node"/>
 						</div>
@@ -50,29 +53,56 @@
 			return "https://picsum.photos/"+randomX()+"/"+randomY();
 		}
 
-		const toggleRILoaderNodeAnimation = (toggleBool) => {
+		const toggleRILoaderNodeAnimation = (turnOffAnimation) => {
 			const riLoaderNode = document.getElementsByClassName("ri-img-loader");
 
-			if (toggleBool) {
-				riLoaderNode[0].style.animation = "none";
+			console.log("toggle RI node 1", riLoaderNode)
+
+			if (turnOffAnimation) {
+				console.log("toggle RI node 2")
+
+				// riLoaderNode[0].style.background = "coral";
+				// riLoaderNode[0].style.animation = "none";
+				riLoaderNode[0].classList.add("ri-img-loader-off")
 			} else {
-				riLoaderNode[0].style.animation = "pulse 1.5s infinite ease-in-out";
+				console.log("toggle RI node 3")
+
+				// riLoaderNode[0].style.animation = "pulse 1.5s infinite ease-in-out";
+				riLoaderNode[0].classList.add("ri-img-loader-on")
+				setTimeout(() => { console.log("waiting"); }, 3000);
+
 			}
 		}
 
-		const buttonCounter = 0;
+		let buttonCounter = 0;
 
 		const updateRandomImageNode = () => {
-			toggleRILoaderNodeAnimation(true)
-			console.log("updating RI node")
-			const randomImageUrl = createRandomImageUrl();
+			toggleRILoaderNodeAnimation(false)
+
 			const randomImageNode = document.getElementById("randomImageNode")
 
+			randomImageNode.src = "";
+
+			// setTimeout(() => { console.log(); }, 3000);
+			// toggleRILoaderNodeAnimation(true)
+			console.log("updating RI node 1")
+			const randomImageUrl = createRandomImageUrl();
+
 			if (randomImageNode) {
-				randomImageNode.src = randomImageUrl;
-				buttonCounter += 1;
-				setTimeout(toggleRILoaderNodeAnimation(true), 2500)
-				// toggleRILoaderNodeAnimation(false)
+				console.log("updating RI node 2")
+
+				const riCounterNode = document.getElementById("riCounter")
+				if (buttonCounter === 9) {
+					riCounterNode.textContent = "counter: " + buttonCounter;
+				} else {
+					buttonCounter += 1;
+					riCounterNode.textContent = "counter: " + buttonCounter;
+					randomImageNode.src = randomImageUrl;
+
+				}
+
+				// setTimeout(toggleRILoaderNodeAnimation(true), 2500)
+				toggleRILoaderNodeAnimation(true)
 			}
 
 			return true;
@@ -88,7 +118,8 @@
 		if (updateRandomImageNode()) {
 			console.log("RI in if")
 
-			setTimeout(toggleRILoaderNodeAnimation(true), 2500)
+			toggleRILoaderNodeAnimation(true)
+			// setTimeout(toggleRILoaderNodeAnimation(true), 2500)
 		}
 	</script>
 

@@ -1,0 +1,26 @@
+.bo-main {
+	display: flex;
+}
+
+.bo-past-posts-container {
+	flex: 20%;
+	padding: 15px 0px;
+	background: #939393;
+}
+
+.bo-post {
+	flex: 80%;
+	margin: auto;
+	text-align: center;
+}
+
+.bo-post-title {
+	padding: 15px 0px;
+	background-color: #B4B4B4;
+}
+
+.bo-post-body {
+	margin: 15px;
+
+	background-color: #F0F0F0;
+}

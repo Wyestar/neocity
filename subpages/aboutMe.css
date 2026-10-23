@@ -11,7 +11,7 @@
 .am-main {
 	margin: 10px auto;
 	text-align: center;
-	/*background-color: #B4B4B4;*/
+	background-color: #F0F0F0;
 }
 
 .am-main-q {
@@ -62,6 +62,19 @@ details > p {
 	grid-template-columns: repeat(2, 1fr);
 }
 
-.am-favs p {
+.am-favs-section {
+	/*could be 190*/
+	height: 210px;
+	padding: 10px 0px 0px 10px;
+	border: 2px dotted #e1e1e1;
+}
+
+.am-favs-section-title {
 	margin: 3px 0 3px 5px;
+	text-decoration: underline;
+}
+
+.am-favs-section details p {
+	margin: 3px 0 3px -10px;
+	background-color: #e1e1e1;
 }
