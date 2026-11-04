@@ -37,7 +37,23 @@
 	</div>
 
 	<!--scripts go here-->
+	<!--use innerHtml to change blog content. keep each blog as local variable in script tag here-->
+	<script>
+		const oct1post = {
+			date: "october 22, 2026",
+			post: ""
+		};
 
+		const nov1post = {
+			date: "november 4, 2026",
+			post: "second post"
+		}
+
+		const nov2post = {
+			date: "november _ 2026",
+			post: "third overall post, second nov"
+		}
+	</script>
 	<script type="module">
 		import { getHeader, getFooter}  from "../js/headerAndFooter.js"
 		getHeader();

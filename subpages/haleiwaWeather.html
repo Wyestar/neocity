@@ -32,6 +32,7 @@
 						<div class="hw-tabs-wrapper">
 							<div>
 
+								data
 							</div>
 						</div>
 					</div>
@@ -49,9 +50,60 @@
 	</div>
 
 	<!--scripts go here-->
-	<script>
+	<script type="module">
+		// TODO; there is a cli ruby gem for automated omTOnc updates
+		import { getHwData }  from "../js/hwDataHandler.js"
+		const hwData = await getHwData();
+		console.log("hw mock data");
+		console.log(hwData);
+
+		const weatherPerDayList = (hwData) => {
+			// return an array of 7 indices, each with the weather data of that day in a flat obj
+			// sun = 0 ... sat = 6
+			// 'daily' is 'val' + 'unit'
+			// ie; 5 degrees
+
+			const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+			let weatherPerDay = [];
+			const dailyUnits = hwData.daily_units
+			const dailyVals = hwData.daily;
+
+			// get all keys besides time
+			const dailyKeys = Object.keys(hwData.daily);
+			const dailyKeysTimeIndex = dailyKeys.findIndex((elem) => elem === "time");
+			dailyKeys.splice(dailyKeysTimeIndex, 1)
+
+			// map index to day name,
+
+			weatherPerDay = hwData.daily.time.map((day, idx) => {
+				console.log("daily time map start", day)
+				const today = new Date(day + " 00:00:00");
+
+				const singleDayWeather = {
+					time: day,
+					dayOfTheWeek: daysOfTheWeek[today.getDay()]
+				};
+				dailyKeys.forEach((key) => {
+					// key = "temp_2m" etc
+					const unit = dailyUnits[key];
+					const val = dailyVals[key][idx];
+
+					// should use string concat
+					const completeDaily = val + " " + unit;
+					singleDayWeather[key] = completeDaily
+					// return completeDaily;
+				})
+
+				return singleDayWeather;
+			})
+
+			return weatherPerDay;
+		}
+		console.log("weather per day test")
+		console.log(weatherPerDayList(hwData));
+
 		const getHaleiwaWeatherData = () => {
-			// TODO; create script to auto call this with updated dates every sunday. save res in json file. upload to neocities.
 			// &start_date=YYYY-MM-DD&end_date=YYYY-MM-DD",
 			// &start_date=2026-10-26
 			// &end_date=2026-11-01";
@@ -61,13 +113,14 @@
 			const endDateString = "2026-11-01"
 			const endDateParam = "&end_date=" + endDateString;
 			const om = "https://api.open-meteo.com/v1/forecast?latitude=21.58849&longitude=-158.11051&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_min,apparent_temperature_max,uv_index_max,uv_index_clear_sky_max,sunrise,sunset,daylight_duration,sunshine_duration,moonset,moonrise,moon_phase,rain_sum,showers_sum,snowfall_sum,precipitation_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration,temperature_2m_mean,apparent_temperature_mean,cape_mean,cape_max,cape_min,cloud_cover_mean,cloud_cover_max,cloud_cover_min,dew_point_2m_mean,dew_point_2m_max,dew_point_2m_min,et0_fao_evapotranspiration_sum,growing_degree_days_base_0_limit_50,leaf_wetness_probability_mean,precipitation_probability_mean,precipitation_probability_min,relative_humidity_2m_mean,relative_humidity_2m_max,relative_humidity_2m_min,snowfall_water_equivalent_sum,pressure_msl_mean,pressure_msl_max,pressure_msl_min,surface_pressure_mean,surface_pressure_max,surface_pressure_min,updraft_max,visibility_mean,visibility_min,visibility_max,wind_gusts_10m_mean,wind_speed_10m_mean,wind_gusts_10m_min,wind_speed_10m_min,wet_bulb_temperature_2m_mean,wet_bulb_temperature_2m_max,wet_bulb_temperature_2m_min,vapour_pressure_deficit_max&timezone=auto" + startDateParam + endDateParam;
+
 			const fetchedHwData = fetch(om)
 				.then(response => response.json())
 				.then((data) => {
 					if (!data) {
 						return;
 					}
-					console.log("haleiwa raw data", data);
+					// console.log("haleiwa raw data", data);
 
 					const hwCurrent = data.current;
 					const hwUnits = data.current_units;
@@ -85,14 +138,10 @@
 					const relativeHumidityDisplayNode = document.getElementById("relativeHumidityDisplay");
 					relativeHumidityDisplayNode.textContent = relativeHumidityDisplay;
 
-					// data.daily_units
-					// data.daily.KEY.idx
-					const hwTab =
-
 				})
 		}
 
-		getHaleiwaWeatherData()
+		// getHaleiwaWeatherData()
 	</script>
 
 	<script type="module">
