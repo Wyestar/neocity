@@ -1,4 +1,3 @@
-// TODO; om script will auto update json file, needs same static path
 export const getHwData = async () => {
 	const hwData = await fetch('../hwDataMock.json')
 		.then(res => res.json())
@@ -30,13 +29,15 @@ export const generateWeatherPerDayList = (hwData) => {
 			time: day,
 			dayOfTheWeek
 		};
+
 		dailyKeys.forEach((key) => {
 			const unit = dailyUnits[key];
 			const val = dailyVals[key][idx];
 
-			// should use string concat
-			const completeDaily = val + " " + unit;
-			singleDayWeather[key] = completeDaily
+			if (unit && val) {
+				const completeDaily = val + "" + unit;
+				singleDayWeather[key] = completeDaily;
+			}
 		})
 
 		return singleDayWeather;
@@ -46,7 +47,56 @@ export const generateWeatherPerDayList = (hwData) => {
 }
 
 // this creates ONE node given data of a single day
-export const createDayNode = () => { };
+export const createDayNode = (dayData) => {
+	const dayOfTheWeek = dayData.dayOfTheWeek;
+	const time = dayData.time;
+
+	const temperature_2m_mean = dayData.temperature_2m_mean;
+	// const uv_index_max = dayData.uv_index_max;
+	const leaf_wetness_probability_mean = dayData.leaf_wetness_probability_mean;
+	const pressure_msl_mean = dayData.pressure_msl_mean;
+	const visibility_mean = dayData.visibility_mean;
+	// add precip and cloud cover
+
+	// start panel generation
+	const dayNode = document.createElement("div");
+	dayNode.classList.add("hw-panel")
+
+	const timeNode = document.createElement("div");
+	timeNode.textContent = dayOfTheWeek + " " + time;
+
+	const panelSingleWeatherDataNodeGenerator = (singleWeatherDataKey, singleDayWeatherValue) => {
+		const mainNode = document.createElement("div");
+		mainNode.classList.add("hw-panel-item");
+
+		const keyNode = document.createElement("div");
+		keyNode.textContent = singleWeatherDataKey;
+
+		const valueNode = document.createElement("div");
+		valueNode.textContent = singleDayWeatherValue;
+
+		mainNode.append(keyNode, valueNode);
+
+		return mainNode;
+	}
+
+	const temperature_2m_meanNode = panelSingleWeatherDataNodeGenerator("temperature", temperature_2m_mean);
+	// const uv_index_maxNode = panelSingleWeatherDataNodeGenerator("temperature", uv_index_max);
+	const leaf_wetness_probability_meanNode = panelSingleWeatherDataNodeGenerator("leaf wetness probability", leaf_wetness_probability_mean);
+	const pressure_msl_meanNode = panelSingleWeatherDataNodeGenerator("pressure", pressure_msl_mean);
+	const visibility_meanNode = panelSingleWeatherDataNodeGenerator("visibility", visibility_mean);
+
+	dayNode.append(
+		timeNode,
+		temperature_2m_meanNode,
+		// uv_index_maxNode,
+		leaf_wetness_probability_meanNode,
+		pressure_msl_meanNode,
+		visibility_meanNode
+	);
+
+	return dayNode;
+};
 
 export default {
 	getHwData,
