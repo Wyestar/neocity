@@ -5,11 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>The web site of gevurztraminer</title>
 	<link href="./style.css" rel="stylesheet" type="text/css" media="all">
-	<!--<script src="jquery.min.js"></script>-->
-	<!--<script type="text/javascript" src="dist/purify.min.js"></script>-->
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<script src="env.js"></script>
+	<!--<script src="env.js"></script>-->
 	<div class="main-page">
 		<header id="headerTarget" class="header">
 			<div class="hero-container">
@@ -71,15 +70,13 @@
 
 		<footer id="footerTarget" class="footer">
 			<div>
-				working on this neocity for fun mostly. everything made by hand, mostly in zed and with a local python server. feel free to share or link anything.
+				creating this neocity for fun mostly, also was inspired by <a href="https://earth2neptune.neocities.org/">earth2neptune</a> to finally jump in. everything made by hand, primarily in zed because i miss atom and with a local python server. feel free to share or link anything. hello Professor Jeffries!
 			</div>
 		</footer>
 	</div>
 
 	<!--scripts, move to js files?-->
 	<script>
-		console.log(window.env.ENVIRONMENT);
-
 		// ascii animation
 		const revealAndAnimatedLogo = () => {
 			const gevDown = ` ░░░░░░  ░░░░░░░ ░░    ░░
@@ -104,7 +101,7 @@
 			const logoAnimate = () => {
 				logoNode.textContent = logoFrames[currentFrame];
 				currentFrame = (currentFrame + 1) % logoFrames.length;
-				console.log("logo", currentFrame);
+				// console.log("logo", currentFrame);
 				setTimeout(logoAnimate, 1000 / fps);
 			}
 
@@ -125,7 +122,7 @@
 		}
 
 		// fetch subpages that are text only, and use innerHTML
-		// haleiwaWeather, aboutMe, and brainOutput only
+		// aboutMe, and brainOutput only
 		const fetchSubpage = (subpageName) => {
 			fetch("http://localhost:8000/subpages/"+subpageName+".html")
 				.then((response) => {
@@ -145,17 +142,9 @@
 				})
 				.catch((err) => {});
 		}
-		const tabs = document.getElementById("tabsList");
-		tabs.addEventListener("click", (event) => {
-			const tab = event.target.closest("li");
-			if (!tab) { return; }
-			console.log("tab data", tab);
-			const tabItemNodeId = tab.id;
-			// fetchSubpage(tabItemNodeId)
-		})
 
 		// fetch subpages with interactivity
-		// random image, mancala, haleiwa (control weather visualization)
+		// random image, mancala, haleiwa
 
 		// fetch header and footer only on subpages
 	</script>

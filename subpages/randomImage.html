@@ -6,6 +6,7 @@
 	<title>The web site of gevurztraminer</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="all">
 	<link href="./randomImage.css" rel="stylesheet" type="text/css" media="all">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<div class="main-page">
@@ -56,17 +57,12 @@
 		const toggleRILoaderNodeAnimation = (turnOffAnimation) => {
 			const riLoaderNode = document.getElementsByClassName("ri-img-loader");
 
-			console.log("toggle RI node 1", riLoaderNode)
 
 			if (turnOffAnimation) {
-				console.log("toggle RI node 2")
-
 				// riLoaderNode[0].style.background = "coral";
 				// riLoaderNode[0].style.animation = "none";
 				riLoaderNode[0].classList.add("ri-img-loader-off")
 			} else {
-				console.log("toggle RI node 3")
-
 				// riLoaderNode[0].style.animation = "pulse 1.5s infinite ease-in-out";
 				riLoaderNode[0].classList.add("ri-img-loader-on")
 				setTimeout(() => { console.log("waiting"); }, 3000);
@@ -83,14 +79,9 @@
 
 			randomImageNode.src = "";
 
-			// setTimeout(() => { console.log(); }, 3000);
-			// toggleRILoaderNodeAnimation(true)
-			console.log("updating RI node 1")
 			const randomImageUrl = createRandomImageUrl();
 
 			if (randomImageNode) {
-				console.log("updating RI node 2")
-
 				const riCounterNode = document.getElementById("riCounter")
 				if (buttonCounter === 9) {
 					riCounterNode.textContent = "counter: " + buttonCounter;
@@ -113,10 +104,8 @@
 		if (randomImageBtn) {
 			randomImageBtn.addEventListener("click", updateRandomImageNode)
 		}
-		console.log("updating RI in script")
 
 		if (updateRandomImageNode()) {
-			console.log("RI in if")
 
 			toggleRILoaderNodeAnimation(true)
 			// setTimeout(toggleRILoaderNodeAnimation(true), 2500)

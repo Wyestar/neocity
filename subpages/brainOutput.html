@@ -6,9 +6,10 @@
 	<title>The web site of gevurztraminer</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="all">
 	<link href="./brainOutput.css" rel="stylesheet" type="text/css" media="all">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<script src="env.js"></script>
+	<!--<script src="env.js"></script>-->
 	<div class="main-page">
 		<header id="headerTarget" class="header"></header>
 
@@ -17,16 +18,14 @@
 				<div id="brainOutputTarget" class="bo-main">
 					<div class="bo-past-posts-container">
 						<ul>
-							<li>october 22, 2026</li>
-							<li>future post</li>
+							<li id="post1" class="bo-post-list-item">october 22, 2026</li>
+							<li id="post2" class="bo-post-list-item">november 07, 2026</li>
 						</ul>
 					</div>
 					<div class="bo-post">
-						<div class="bo-post-title">
-							is it true that with every cve the machine reaches its final form...
+						<div id="boPostTitle" class="bo-post-title">click a post on the left to view it
 						</div>
-						<div class="bo-post-body">
-							what a day to start writing a little blog. lerdorfs brainchild was exposed and so began the brewing of many thousands of pots of coffee, as netsec teams all over started a marathon quilting session. digital needles need carpal tunnel free hands, clear eyesight, and straight backs. all qualities engineers exude. as the interwebs are patched it is a good time to discuss other topical subjects such as how i barely grabbed tickets for dune part 3 earlier this week. most imax showings had high occupancy and good central seats were mostly gone. my showing is in the morning though, so i think i got matinee price, but still pretty financially damaging. well, that is it for the first entry here. next entry up before thanksgiving, that is the goal.
+						<div id="boPostBody" class="bo-post-body">
 						</div>
 					</div>
 				</div>
@@ -36,23 +35,41 @@
 		<footer id="footerTarget" class="footer"></footer>
 	</div>
 
-	<!--scripts go here-->
-	<!--use innerHtml to change blog content. keep each blog as local variable in script tag here-->
 	<script>
-		const oct1post = {
+		const octPost1 = {
 			date: "october 22, 2026",
-			post: ""
+			postTitle: "is it true that with every cve the machine reaches its final form...",
+			postBody: "what a day to start writing a little blog. lerdorfs brainchild was exposed and so began the brewing of many thousands of pots of coffee, as netsec teams all over started a marathon quilting session. digital needles need carpal tunnel free hands, clear eyesight, and straight backs. all qualities engineers exude. as the interwebs are patched it is a good time to discuss other topical subjects such as how i barely grabbed tickets for dune part 3 earlier this week. most imax showings had high occupancy and good central seats were mostly gone. my showing is in the morning though, so i think i got matinee price, but still pretty financially damaging. well, that is it for the first entry here. next entry up before thanksgiving, that is the goal."
 		};
 
-		const nov1post = {
-			date: "november 4, 2026",
-			post: "second post"
+		const novPost1 = {
+			date: "november 07, 2026",
+			postTitle: "the terms of mid",
+			postBody: "second post is here and it is before thanksgiving! one week into november things are going well. a lot of citizens of america seemed to have corrected their color blindness between red and blue and acted accordingly. with this improved ocular capacity i expect nice things to be on the way. speaking of nice things, i have a family dinner celebration tonight that will be a good time. alright, short post this is, next one in december around christmas time and will be a big one."
 		}
 
-		const nov2post = {
-			date: "november _ 2026",
-			post: "third overall post, second nov"
+		// programatically create post list and change content
+		const changePostContents1 = () => {
+			const titleNode = document.getElementById("boPostTitle")
+			titleNode.textContent = octPost1.postTitle
+			const bodyNode = document.getElementById("boPostBody")
+			bodyNode.textContent = octPost1.postBody
 		}
+
+		const changePostContents2 = () => {
+			const titleNode = document.getElementById("boPostTitle")
+			titleNode.textContent = novPost1.postTitle
+			const bodyNode = document.getElementById("boPostBody")
+			bodyNode.textContent = novPost1.postBody
+		}
+
+		const listNode1 = document.getElementById("post1")
+		const listNode2 = document.getElementById("post2")
+
+		listNode1.addEventListener("click", changePostContents1)
+		listNode2.addEventListener("click", changePostContents2)
+
+
 	</script>
 	<script type="module">
 		import { getHeader, getFooter}  from "../js/headerAndFooter.js"

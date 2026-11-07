@@ -6,10 +6,11 @@
 	<title>The web site of gevurztraminer</title>
 	<link href="../style.css" rel="stylesheet" type="text/css" media="all">
 	<link href="./haleiwaWeather.css" rel="stylesheet" type="text/css" media="all">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon">
 	<!--<meta http-equiv="Content-Security-Policy" content="connect-src 'self' data: blob: https://api.open-meteo.com;">-->
 </head>
 <body>
-	<script src="env.js"></script>
+	<!--<script src="env.js"></script>-->
 	<div class="main-page">
 		<header id="headerTarget" class="header">
 			<!--<div id="bannerContainer" class="banner-container">
@@ -23,13 +24,19 @@
 			<div id="subpageTarget" class="torso">
 				<div id="haleiwaWeatherSubpage">
 					<div class="hw-title">
-						the weather of haleiwa, hawaii for a week for your viewing pleasure.
+						<p>
+							selected weather attributes of haleiwa, hawaii for a week for your viewing pleasure.
+						</p>
+						<div id="hwQuestion" class="hw-question">
+							<p>why?</p>
+						</div>
+						<div id="hwReason" class="hw-reason"></div>
 					</div>
 					<div class="hw-section-container">
-						<div class="hw-menu container">
+						<!--<div class="hw-menu container">
 							<div>show only current day</div>
 							<div>expand all</div>
-						</div>
+						</div>-->
 						<div class="hw-panels-container">
 							<div id="hwPanelsWrapper" class="hw-panels-wrapper">
 							</div>
@@ -42,33 +49,34 @@
 		<footer id="footerTarget" class="footer"></footer>
 	</div>
 
-	<!--scripts go here-->
 	<script type="module">
-		// TODO; there is a cli ruby gem for automated updates
-		// om req => save res as json => upload file to nc
+		// TODO; add more buttons to control panel display and change units of measurement
+		let isOpen = false;
+		const showReason = () => {
+			const hwQuestionNode = document.getElementById("hwQuestion")
+			const hwReasonNode = document.getElementById("hwReason");
+			if (!isOpen) {
+				hwReasonNode.textContent = "my wife gets severe weather updates for hawaii from some old alert system. so i thought it would be neat to build a little something kinda like that. haleiwa is a cool place too, big recommend."
+				hwQuestionNode.classList.remove("hw-question-closed")
+				hwQuestionNode.classList.add("hw-question-open")
+				isOpen = true;
+			} else {
+				hwReasonNode.textContent = ""
+				isOpen = false;
+				hwQuestionNode.classList.remove("hw-question-open")
+				hwQuestionNode.classList.add("hw-question-closed")
+			}
+		}
+		const hwQuestionNode = document.getElementById("hwQuestion")
+		hwQuestionNode.addEventListener("click", showReason)
+
 		import { getHwData, generateWeatherPerDayList, createDayNode }  from "../js/hwDataHandler.js"
 		const hwData = await getHwData();
-		console.log("hw mock data");
-		console.log(hwData);
-
-		// this takes JSON of weather data and parses it into an array of objects. each object is a day and its weather values, with units.
 		const weatherPerDayList = generateWeatherPerDayList(hwData)
-		console.log("weather per day test")
-		console.log(weatherPerDayList);
-
-		// given array of weather data, each index is an obj of a day.
-		// construct nodes for display
-		// default show mid-level data in horizontal panels layout
-		// click on a day to expand that day and hide others.
-		// want to animate panels.
-		// highlighted panel ~60% width
-		// TODO; expand all feature, show panels in vertical layout
 
 		const hwPanelsWrapperNode = document.getElementById("hwPanelsWrapper")
-
 		weatherPerDayList.forEach((day) => {
 			const dayNode = createDayNode(day);
-			// set in DOM when created
 			hwPanelsWrapperNode.appendChild(dayNode);
 		})
 	</script>

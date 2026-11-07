@@ -8,6 +8,10 @@
 	background: #939393;
 }
 
+.bo-post-list-item {
+	cursor: pointer;
+}
+
 .bo-post {
 	flex: 80%;
 	margin: auto;
